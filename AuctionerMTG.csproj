@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7BEB8FB1-4AE4-4BC0-BF9B-3A5D930D492F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>AuctionerMTG</RootNamespace>
+    <AssemblyName>AuctionerMTG</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AngleSharp, Version=0.14.0.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
+      <HintPath>packages\AngleSharp.0.14.0\lib\net472\AngleSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.4.5.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encoding.CodePages, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Encoding.CodePages.4.5.0\lib\net461\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Comment.cs" />
+    <Compile Include="xNet\xNet-master\Properties\AssemblyInfo.cs" />
+    <Compile Include="xNet\xNet-master\Resources.Designer.cs" />
+    <Compile Include="xNet\xNet-master\xNet\Html.cs" />
+    <Compile Include="xNet\xNet-master\xNet\NetException.cs" />
+    <Compile Include="xNet\xNet-master\xNet\RequestParams.cs" />
+    <Compile Include="xNet\xNet-master\xNet\WinInet.cs" />
+    <Compile Include="xNet\xNet-master\xNet\~Http\CookieDictionary.cs" />
+    <Compile Include="xNet\xNet-master\xNet\~Http\Http.cs" />
+    <Compile Include="xNet\xNet-master\xNet\~Http\HttpException.cs" />
+    <Compile Include="xNet\xNet-master\xNet\~Http\HttpExceptionStatus.cs" />
+    <Compile Include="xNet\xNet-master\xNet\~Http\HttpHeader.cs" />
+    <Compile Include="xNet\xNet-master\xNet\~Http\HttpMethod.cs" />
+    <Compile Include="xNet\xNet-master\xNet\~Http\HttpRequest.cs" />
+    <Compile Include="xNet\xNet-master\xNet\~Http\HttpResponse.cs" />
+    <Compile Include="xNet\xNet-master\xNet\~Http\HttpStatusCode.cs" />
+    <Compile Include="xNet\xNet-master\xNet\~Http\~Content\BytesContent.cs" />
+    <Compile Include="xNet\xNet-master\xNet\~Http\~Content\FileContent.cs" />
+    <Compile Include="xNet\xNet-master\xNet\~Http\~Content\FormUrlEncodedContent.cs" />
+    <Compile Include="xNet\xNet-master\xNet\~Http\~Content\HttpContent.cs" />
+    <Compile Include="xNet\xNet-master\xNet\~Http\~Content\MultipartContent.cs" />
+    <Compile Include="xNet\xNet-master\xNet\~Http\~Content\StreamContent.cs" />
+    <Compile Include="xNet\xNet-master\xNet\~Http\~Content\StringContent.cs" />
+    <Compile Include="xNet\xNet-master\xNet\~Http\~Misc\DownloadProgressChangedEventArgs.cs" />
+    <Compile Include="xNet\xNet-master\xNet\~Http\~Misc\UploadProgressChangedEventArgs.cs" />
+    <Compile Include="xNet\xNet-master\xNet\~Internal\ExceptionHelper.cs" />
+    <Compile Include="xNet\xNet-master\xNet\~Internal\ProxyHelper.cs" />
+    <Compile Include="xNet\xNet-master\xNet\~Internal\SafeNativeMethods.cs" />
+    <Compile Include="xNet\xNet-master\xNet\~Proxy\ChainProxyClient.cs" />
+    <Compile Include="xNet\xNet-master\xNet\~Proxy\HttpProxyClient.cs" />
+    <Compile Include="xNet\xNet-master\xNet\~Proxy\ProxyClient.cs" />
+    <Compile Include="xNet\xNet-master\xNet\~Proxy\ProxyException.cs" />
+    <Compile Include="xNet\xNet-master\xNet\~Proxy\ProxyType.cs" />
+    <Compile Include="xNet\xNet-master\xNet\~Proxy\Socks4aProxyClient.cs" />
+    <Compile Include="xNet\xNet-master\xNet\~Proxy\Socks4ProxyClient.cs" />
+    <Compile Include="xNet\xNet-master\xNet\~Proxy\Socks5ProxyClient.cs" />
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controler\AuctionNameList.cs" />
+    <Compile Include="Controler\ParserSettings.cs" />
+    <Compile Include="Controler\ParserWorker.cs" />
+    <Compile Include="Controler\HtmlLoader.cs" />
+    <Compile Include="IAuction.cs" />
+    <Compile Include="Model\DataType.cs" />
+    <Compile Include="Model\IParser.cs" />
+    <Compile Include="Model\IParserSetting.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Model\AuctionJObject\MTGHuntJObject.cs" />
+    <Compile Include="Model\AuctionJObject\TopDeckJObject.cs" />
+    <Compile Include="Model\Parsers\MTGHuntParser.cs" />
+    <Compile Include="Model\Parsers\TopDeckParser.cs" />
+    <Compile Include="Model\Settings\MTGHuntSetting.cs" />
+    <Compile Include="Model\Settings\TopDeckSettings.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="xNet\xNet-master\Resources.resx" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="xNet\xNet-master\.gitignore" />
+    <None Include="xNet\xNet-master\README.md" />
+    <None Include="xNet\xNet-master\xNet.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\Close.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\Min.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\ClearO.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\Get.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\GetO.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\CloseC.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\MinC.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\Clear.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="xNet\xNet-master\LICENSE.txt" />
+    <Content Include="xNet\xNet-master\xNet.sln" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
