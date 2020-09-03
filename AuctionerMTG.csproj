@@ -76,7 +76,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\AuctionJObject\VKAbstractJObject.cs" />
     <Compile Include="Model\Comment.cs" />
+    <Compile Include="Model\Converter.cs" />
+    <Compile Include="Model\ListAuctionParam.cs" />
+    <Compile Include="Model\Parsers\VKAbstractParser.cs" />
+    <Compile Include="Model\Substring.cs" />
     <Compile Include="xNet\xNet-master\Properties\AssemblyInfo.cs" />
     <Compile Include="xNet\xNet-master\Resources.Designer.cs" />
     <Compile Include="xNet\xNet-master\xNet\Html.cs" />

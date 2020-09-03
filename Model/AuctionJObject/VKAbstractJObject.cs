@@ -1,13 +1,13 @@
-﻿
-using AuctionerMTG;
-using AuctionerMTG.Model;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading;
-// Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse); 
-namespace AuctionJObject
+using System.Threading.Tasks;
+
+namespace AuctionerMTG.Model.AuctionJObject
 {
     public class Photo
     {
@@ -50,8 +50,12 @@ namespace AuctionJObject
         public int count { get; set; }
     }
 
-    public class MTGHuntJObject : IAuction
+    public class VKAbstractJObject : IAuction
     {
+        public VKAbstractJObject(Dictionary<ListAuctionParam, string> value)
+        {
+            Params = value;
+        }
         public int id { get; set; }
         public int from_id { get; set; }
         public int owner_id { get; set; }
@@ -71,11 +75,13 @@ namespace AuctionJObject
 
         private string startPrice;
 
+        public Dictionary<ListAuctionParam, string> Params { get; set; }
+
         public string Name
         {
             get
             {
-                string name = Substring.GetSubstringNoIncluded(text, @"Описание лота: ", "\nСостояние лота:");
+                string name = Substring.GetSubstringNoIncluded(text, Params[ListAuctionParam.NameStart], Params[ListAuctionParam.NameEnd]);
                 return name.Replace("\n", " ");
             }
         }
@@ -84,7 +90,7 @@ namespace AuctionJObject
         {
             get
             {
-                return Substring.GetSubstringNoIncluded(text, @"Дата и время окончания: ", @"(МСК)");
+                return Substring.GetSubstringNoIncluded(text, Params[ListAuctionParam.TimeStart], Params[ListAuctionParam.TimeEnd]);
             }
         }
 
@@ -99,7 +105,7 @@ namespace AuctionJObject
         private string GetPrice()
         {
 
-            startPrice = Substring.GetSubstringNoIncluded(text, @"Стартовая цена:", "\nМинимальный шаг:");
+            startPrice = Substring.GetSubstringNoIncluded(text, Params[ListAuctionParam.StartPriceStart], Params[ListAuctionParam.StartPriceEnd]);
 
             if (this.comments.count == 0)
             {
@@ -118,17 +124,14 @@ namespace AuctionJObject
             using (WebClient wc = new WebClient())
             {
                 string JsonComment = wc.DownloadString(GetCommentURL);
-                JsonComment = @"{" + Substring.GetSubstringStartIncluded(JsonComment, @"""items", "}}") + @"}";
+                JsonComment = @"{" + Substring.GetSubstringIncluded(JsonComment, @"""items", "}}") + @"}";
                 Thread.Sleep(300);
                 comments = Converter<Comment>.JsonToList(JsonComment, "items");
             }
-            if (comments == null)
-            {
-                return string.Empty;
-            }
-            price = comments[0]?.ToString();
+
+            price = comments[0].ToString();
             price = Encoding.UTF8.GetString(Encoding.Default.GetBytes(price)); // Black Magic
-            price = Substring.GetSubstringNoIncluded(price, "(", " рублей)");
+            price = Substring.GetSubstringIncluded(price, Params[ListAuctionParam.PriceStart], Params[ListAuctionParam.PriceEnd]);
             return string.Concat(startPrice, " / ", price);
         }
 
@@ -144,7 +147,7 @@ namespace AuctionJObject
     public class Response
     {
         public int count { get; set; }
-        public List<MTGHuntJObject> items { get; set; }
+        public List<VKAbstractJObject> items { get; set; }
     }
 
     public class Roots
@@ -152,3 +155,4 @@ namespace AuctionJObject
         public List<Response> response { get; set; }
     }
 }
+

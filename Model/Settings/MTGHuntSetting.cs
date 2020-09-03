@@ -20,6 +20,14 @@ namespace AuctionerMTG.Model.ParsersSettings
             EndPoint = end;
             userToken = File.ReadAllLines ("UserInf.txt");
             Postfix = String.Concat("access_token=", userToken[0], "&owner_id=-177193845&v=5.52&count=");
+            Params.Add(ListAuctionParam.NameEnd, "\nСостояние лота:");
+            Params.Add(ListAuctionParam.NameStart, "Описание лота: ");
+            Params.Add(ListAuctionParam.PriceEnd, "(");
+            Params.Add(ListAuctionParam.PriceStart, "рублей)");
+            Params.Add(ListAuctionParam.StartPriceEnd, "Стартовая цена: ");
+            Params.Add(ListAuctionParam.StartPriceStart, "\nМинимальный шаг:");
+            Params.Add(ListAuctionParam.TimeEnd, "Дата и время окончания: ");
+            Params.Add(ListAuctionParam.TimeStart, "(МСК)");
         }
         private string[] userToken;
         private string postfix;
@@ -36,8 +44,10 @@ namespace AuctionerMTG.Model.ParsersSettings
                 postfix = value;
             }
         }
-        public int StartPoint { get; set; } = 100;
-        public int EndPoint { get; set; } = 100;
+        public int StartPoint { get; set; }
+        public int EndPoint { get; set; }
+
+        public Dictionary<ListAuctionParam, string> Params;
 
         
 
