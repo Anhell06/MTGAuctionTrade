@@ -4,11 +4,12 @@ using AuctionerMTG.Model.AuctionJObject;
 using AuctionJObject;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace AuctionerMTG.Model.Parsers
 {
-    class MTGHuntParser : IParser
+    class VKAbstractParser : IParser
     {
 
         public List<IAuction> Parse(IHtmlDocument document, DataType dataType)
