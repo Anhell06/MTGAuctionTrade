@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace AuctionerMTG.Controler
 {
-    enum AuctionNameList
+    public enum AuctionNameList
     {
         TopDeck,
-        MTGHunt
+        MTGHunt,
+        Mtg_auction,
+        Black_Lotus,
+        Hobbycards,
+        MTG_KKU
     }
 }

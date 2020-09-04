@@ -27,11 +27,9 @@ namespace AuctionerMTG.Model
             }
             catch (Newtonsoft.Json.JsonReaderException)
             {
-                return null;
+                return new List<T>();
             }
 
         }
     }
-    
-
 }

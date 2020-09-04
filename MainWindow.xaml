@@ -20,15 +20,23 @@
             <RowDefinition Height="480"/>
             <RowDefinition Height="35"/>
         </Grid.RowDefinitions>
-        <Grid Name="Logo" Grid.Row="0" Background="Transparent" MouseDown="Logo_MouseDown">
+        <Grid Name="Logo" Grid.Row="0" Background="Transparent" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
+            <Image Name="Logotip" Margin="5" Source="Source/LOgo.png" MouseDown="Logo_MouseDown">
+                
+            </Image>
             <ComboBox SelectedIndex="0" Name="AuctionList"  Height="25" Width="200" Grid.Column="1" HorizontalAlignment="Left" Margin="10" SelectionChanged="AuctionList_SelectionChanged">
                 <TextBlock>TopDeck</TextBlock>
                 <TextBlock>MTGHunt</TextBlock>
+                <TextBlock>Mtg_auction</TextBlock>
+                <TextBlock>Black_Lotus</TextBlock>
+                <TextBlock>Hobbycards</TextBlock>
+                <TextBlock>MTG_KKU</TextBlock>
+
             </ComboBox>
             <Button x:Name="Start" Grid.Column="1" Height="50" Width="116" 
                     HorizontalAlignment="Right" Margin="10" Click="Start_Click" 
@@ -63,7 +71,18 @@
             </Button>
 
             <StackPanel Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Center">
-                <Image Height="40" Width="40" Margin="5"/>
+                <Image Name="About" Height="40" Width="40" Margin="5" MouseDown="AboutBtn_Msg">
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Setter Property="Source"  Value="Source\About.jpg"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=About}" Value="True">
+                                    <Setter Property="Source" Value="Source\AboutC.jpg"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
                 <Image Name="MinButton" Height="40" Width="40" Margin="5" MouseDown="MinButton_MouseUp">
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">
@@ -116,6 +135,9 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+            <Label Content="Название лота" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top" Height="26" Width="156"/>
+            <Label Content="Дата окончания аукциона" HorizontalAlignment="Left" Margin="488,26,0,0" VerticalAlignment="Top" Height="26" Width="156"/>
+            <Label Content="Стартовая/Текущая цена" HorizontalAlignment="Left" Margin="644,26,0,0" VerticalAlignment="Top" Height="26" Width="146"/>
         </Grid>
     </Grid>
 

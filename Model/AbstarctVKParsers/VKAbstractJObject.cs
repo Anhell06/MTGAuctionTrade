@@ -29,6 +29,7 @@ namespace AuctionerMTG.Model.AuctionJObject
         public string photo_2560 { get; set; }
         public string photo_807 { get; set; }
     }
+
     public class Attachment
     {
         public string type { get; set; }
@@ -52,7 +53,7 @@ namespace AuctionerMTG.Model.AuctionJObject
 
     public class VKAbstractJObject : IAuction
     {
-        public VKAbstractJObject(Dictionary<ListAuctionParam, string> value)
+        public VKAbstractJObject(Dictionary<ParamTextSubsring, string> value)
         {
             Params = value;
         }
@@ -69,19 +70,17 @@ namespace AuctionerMTG.Model.AuctionJObject
         public Likes likes { get; set; }
         public Reposts reposts { get; set; }
 
-        private string price;
-
-        private string[] access_token = File.ReadAllLines("UserInf.txt");
-
         private string startPrice;
 
-        public Dictionary<ListAuctionParam, string> Params { get; set; }
+        public Dictionary<ParamTextSubsring, string> Params { get; set; }
+
+        public string comment;
 
         public string Name
         {
             get
             {
-                string name = Substring.GetSubstringNoIncluded(text, Params[ListAuctionParam.NameStart], Params[ListAuctionParam.NameEnd]);
+                string name = Substring.GetSubstringNoIncluded(text, Params[ParamTextSubsring.StartName], Params[ParamTextSubsring.EndName]);
                 return name.Replace("\n", " ");
             }
         }
@@ -90,7 +89,7 @@ namespace AuctionerMTG.Model.AuctionJObject
         {
             get
             {
-                return Substring.GetSubstringNoIncluded(text, Params[ListAuctionParam.TimeStart], Params[ListAuctionParam.TimeEnd]);
+                return Substring.GetSubstringNoIncluded(text, Params[ParamTextSubsring.StartTime], Params[ParamTextSubsring.EndTime]);
             }
         }
 
@@ -98,48 +97,23 @@ namespace AuctionerMTG.Model.AuctionJObject
         {
             get
             {
-                return GetPrice();
+                startPrice = Substring.GetSubstringNoIncluded(text, Params[ParamTextSubsring.StartPrice], Params[ParamTextSubsring.EndPrice]);
+
+                if (this.comments.count == 0)
+                {
+                    return string.Concat(startPrice, @" / 0");
+                }
+                comment = Substring.GetSubstringNoIncluded(comment, Params[ParamTextSubsring.StartNowPrice], Params[ParamTextSubsring.EndNowPrice]);
+                return string.Concat(startPrice, " / ", comment);
             }
         }
 
-        private string GetPrice()
-        {
-
-            startPrice = Substring.GetSubstringNoIncluded(text, Params[ListAuctionParam.StartPriceStart], Params[ListAuctionParam.StartPriceEnd]);
-
-            if (this.comments.count == 0)
-            {
-                return string.Concat(startPrice, @" / 0");
-            }
-
-            string GetCommentURL = string.Concat
-                (
-                "https://api.vk.com/method/wall.getComments?access_token=", access_token[0],
-                "&owner_id=", owner_id,
-                "&v=5.52&count=1&sort=desc&post_id=", id
-                );
-
-            List<Comment> comments = new List<Comment>();
-
-            using (WebClient wc = new WebClient())
-            {
-                string JsonComment = wc.DownloadString(GetCommentURL);
-                JsonComment = @"{" + Substring.GetSubstringIncluded(JsonComment, @"""items", "}}") + @"}";
-                Thread.Sleep(300);
-                comments = Converter<Comment>.JsonToList(JsonComment, "items");
-            }
-
-            price = comments[0].ToString();
-            price = Encoding.UTF8.GetString(Encoding.Default.GetBytes(price)); // Black Magic
-            price = Substring.GetSubstringIncluded(price, Params[ListAuctionParam.PriceStart], Params[ListAuctionParam.PriceEnd]);
-            return string.Concat(startPrice, " / ", price);
-        }
 
         public string url
         {
             get
             {
-                return string.Concat(@"https://vk.com/mtg_hunt?w=wall", owner_id, "_", id);
+                return string.Concat(@"https://vk.com/wall", owner_id, "_", id);
             }
         }
     }

@@ -1,24 +1,11 @@
-﻿using AngleSharp.Browser;
-using AuctionerMTG.Controler;
-using AuctionerMTG.Model.Parsers;
-using AuctionerMTG.Model.ParsersSettings;
+﻿using AuctionerMTG.Controler;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace AuctionerMTG
 {
@@ -46,7 +33,7 @@ namespace AuctionerMTG
 
         private void ParserOnComplited(object obj)
         {
-            MessageBox.Show("I vse!");
+            MessageBox.Show("Загрузка завершена");
         }
         private void UrlLink(object sender, RoutedEventArgs e)
         {
@@ -64,7 +51,7 @@ namespace AuctionerMTG
             parser.OnComplited += ParserOnComplited;
             parser.OnNewName += ParserOnNewData;
             parser.Start();
-            MessageBox.Show("Waith!");
+            MessageBox.Show("Ожидайте загрузки данных по лотам. \n Это может занять до 30 секунд");
 
         }
         private void Clear_Click(object sender, RoutedEventArgs e)
@@ -82,6 +69,11 @@ namespace AuctionerMTG
         private void MinButton_MouseUp(object sender, MouseButtonEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
+        }
+
+        private void AboutBtn_Msg(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("Тестовая версия для личного пользования. \n Все вопросы https://vk.com/an_hell");
         }
 
         private void Logo_MouseDown(object sender, MouseButtonEventArgs e)

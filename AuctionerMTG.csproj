@@ -76,11 +76,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\AuctionJObject\VKAbstractJObject.cs" />
+    <Compile Include="Model\AbstarctVKParsers\BDVKTextParams.cs" />
+    <Compile Include="Model\AbstarctVKParsers\VKAbstractJObject.cs" />
+    <Compile Include="Model\AbstarctVKParsers\VKAbstractParser.cs" />
+    <Compile Include="Model\AbstarctVKParsers\VKAbstraktSetting.cs" />
     <Compile Include="Model\Comment.cs" />
     <Compile Include="Model\Converter.cs" />
-    <Compile Include="Model\ListAuctionParam.cs" />
-    <Compile Include="Model\Parsers\VKAbstractParser.cs" />
     <Compile Include="Model\Substring.cs" />
     <Compile Include="xNet\xNet-master\Properties\AssemblyInfo.cs" />
     <Compile Include="xNet\xNet-master\Resources.Designer.cs" />
@@ -129,7 +130,7 @@
     <Compile Include="Controler\ParserSettings.cs" />
     <Compile Include="Controler\ParserWorker.cs" />
     <Compile Include="Controler\HtmlLoader.cs" />
-    <Compile Include="IAuction.cs" />
+    <Compile Include="Model\IAuction.cs" />
     <Compile Include="Model\DataType.cs" />
     <Compile Include="Model\IParser.cs" />
     <Compile Include="Model\IParserSetting.cs" />
@@ -204,6 +205,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="xNet\xNet-master\LICENSE.txt" />
+    <Resource Include="Source\About.jpg" />
+    <Resource Include="Source\AboutC.jpg" />
+    <Resource Include="Source\LOgo.png" />
     <Content Include="xNet\xNet-master\xNet.sln" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

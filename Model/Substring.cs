@@ -13,6 +13,10 @@ namespace AuctionerMTG.Model
         {
             try
             {
+                if (startText == "" & lastText == "")
+                {
+                    return text;
+                }
                 text = text.Substring(text.IndexOf(startText) + startText.Length);
                 text = text.Substring(0, text.LastIndexOf(lastText));
                 return text;
@@ -20,7 +24,7 @@ namespace AuctionerMTG.Model
             catch (System.ArgumentOutOfRangeException)
             {
 
-                return string.Empty;
+                return String.Empty;
             }
         }
         public static string GetSubstringStartIncluded(string text, string startText, string lastText)
@@ -34,7 +38,7 @@ namespace AuctionerMTG.Model
             catch (System.ArgumentOutOfRangeException)
             {
 
-                return string.Empty;
+                return String.Empty;
             }
         }
         public static string GetSubstringLastIncluded(string text, string startText, string lastText)
@@ -48,7 +52,7 @@ namespace AuctionerMTG.Model
             catch (System.ArgumentOutOfRangeException)
             {
 
-                return string.Empty;
+                return String.Empty;
             }
         }
         public static string GetSubstringIncluded(string text, string startText, string lastText)
@@ -62,7 +66,7 @@ namespace AuctionerMTG.Model
             catch (System.ArgumentOutOfRangeException)
             {
 
-                return string.Empty;
+                return String.Empty;
             }
         }
     }

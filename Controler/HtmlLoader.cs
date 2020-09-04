@@ -32,7 +32,7 @@ namespace AuctionerMTG.Controler
         {
             string currentUrl = url.Replace("CurentID", id.ToString());
             HttpResponseMessage responce = await client.GetAsync(currentUrl);
-            string source = default;
+            string source = null; //need default
 
             if (responce!= null && responce.StatusCode == HttpStatusCode.OK)
             {

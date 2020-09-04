@@ -1,25 +1,20 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Cache;
-using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Media.Animation;
-using xNet;
 
-namespace AuctionerMTG.Model.ParsersSettings
+namespace AuctionerMTG.Model.AbstarctVKParsers
 {
-    class MTGHuntSetting : IParserSettings
+    class VKAbstraktSetting : IParserSettings
     {
-        public MTGHuntSetting(int start, int end)
+        public VKAbstraktSetting(int start, int end, string owner_id)
         {
             StartPoint = start;
             EndPoint = end;
-            userToken = File.ReadAllLines ("UserInf.txt");
-            Postfix = String.Concat("access_token=", userToken[0], "&owner_id=-177193845&v=5.52&count=");
+            userToken = File.ReadAllLines("UserInf.txt");
+            Postfix = String.Concat("access_token=", userToken[0], "&owner_id=", owner_id, "&v=5.52&count=");
         }
         private string[] userToken;
         private string postfix;
@@ -38,10 +33,9 @@ namespace AuctionerMTG.Model.ParsersSettings
         }
         public int StartPoint { get; set; }
         public int EndPoint { get; set; }
-        
 
-        
+
+
 
     }
-
 }
