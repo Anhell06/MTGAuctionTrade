@@ -21,9 +21,14 @@ namespace AuctionerMTG.Model
             {
                 JObject jObject = JObject.Parse(JSON);
                 JToken list = jObject[JToken];
-                List<T> trades = list.ToObject<List<T>>();
-                trades.Reverse();
-                return trades;
+                List<T> trades = new List<T>();
+                if (list != null)
+                {
+                    trades = list.ToObject<List<T>>();
+                    trades.Reverse();
+                    return trades;
+                }
+                return new List<T>();
             }
             catch (Newtonsoft.Json.JsonReaderException)
             {
